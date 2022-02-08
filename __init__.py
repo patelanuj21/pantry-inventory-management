@@ -1,3 +1,4 @@
+from crypt import methods
 import os
 from flask import Flask
 
@@ -11,6 +12,11 @@ def create_app(test_config=None):
         app.config.from_pyfile('config.py', silent=True)
     else:
         app.config.from_mapping(test_config)
+
+
+    @app.route('/alive', methods=['GET'])
+    def alive():
+        return 'alive'
 
     return app
     
