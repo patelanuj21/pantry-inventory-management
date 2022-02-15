@@ -8,7 +8,7 @@ from flask import request, jsonify
 connection = sql_connection.get_sql_connection()
 
 # Health check API call
-@app.route('/alive', methods=['GET'])
+@app.route('/healthCheck', methods=['GET'])
 def alive():
     return 'alive'
 
