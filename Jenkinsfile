@@ -1,11 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
-            steps {
-                echo 'Checking out the main branch'
-            }
-         }
         stage('Build') {
             steps {
                 echo 'Running build automation'
@@ -17,11 +12,17 @@ pipeline {
             }
          }
         stage('DeployToStaging') {
+            when {
+                branch 'main'
+            }
             steps {
                 echo 'Deploying to the staging server'
             }
          }
         stage('DeployToProduction') {
+            when {
+                branch 'main'
+            }
             steps {
                 echo 'Deploying to the staging server'
             }
