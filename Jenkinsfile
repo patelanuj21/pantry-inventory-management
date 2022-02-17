@@ -20,16 +20,26 @@ pipeline {
                 branch 'main'
             }
             steps {
-                echo 'Building the Docker Image'
+                script {
+                    app = docker.build("patanuj21/pantry-inventory-management")
+                    app.inside {
+                        sh 'echo $(curl localhost:5000/healthCheck)'
+                    }
+                }
             }
-         }
+        }
         stage('Push Docker Image') {
             when {
                 branch 'main'
             }
             steps {
-                echo 'Pushing the Docker Image to Docker Hub'
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
+                    }
+                }
             }
-        }
+        }       
     }
 }
