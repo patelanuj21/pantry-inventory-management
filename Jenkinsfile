@@ -11,20 +11,20 @@ pipeline {
                 echo 'Running the tests'
             }
          }
-        stage('DeployToStaging') {
+        stage('Build Docker Image') {
             when {
                 branch 'main'
             }
             steps {
-                echo 'Deploying to the staging server'
+                echo 'Building the Docker Image'
             }
          }
-        stage('DeployToProduction') {
+        stage('Push Docker Image') {
             when {
                 branch 'main'
             }
             steps {
-                echo 'Deploying to the staging server'
+                echo 'Pushing the Docker Image to Docker Hub'
             }
         }
     }
