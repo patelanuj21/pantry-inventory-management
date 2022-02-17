@@ -4,9 +4,9 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build automation'
-                echo "Building artifact"
-                mkdir -p build_artifacts
-                tar -cvzf build_artifacts/pantry.tar.gz --exclude=./build_artifacts .
+                echo 'Building artifact'
+                sh 'mkdir -p build_artifacts'
+                sh 'tar -cvzf build_artifacts/pantry.tar.gz --exclude=./build_artifacts .'
                 archiveArtifacts artifacts: 'build_artifacts/pantry.tar.gz'
             }
          }
