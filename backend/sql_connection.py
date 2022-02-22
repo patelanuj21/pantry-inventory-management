@@ -21,6 +21,7 @@ def get_sql_connection():
                 print("Database does not exist")
             else:
                 print(err)
-        else:
-            _cnx.close()
+        # else:
+        #     raise
+        # #     _cnx.close()
     return __cnx
