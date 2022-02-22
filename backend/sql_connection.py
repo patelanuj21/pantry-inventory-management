@@ -12,7 +12,7 @@ def get_sql_connection():
     global __cnx
     if __cnx is None:
         try:
-            __cnx = mysql.connector.connect(user=app.config['DB_USER'], password=app.config['DB_PASSWORD'], host=app.config['DB_HOST'], database=app.config['DB_NAME'])
+            __cnx = mysql.connector.connect(user=app.config['DB_USERNAME'], password=app.config['DB_PASSWORD'], host=app.config['DB_HOST'], database=app.config['DB_NAME'])
 
         except mysql.connector.Error as err:
             if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
